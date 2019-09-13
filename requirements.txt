@@ -1,0 +1,5 @@
+python-csv==0.0.*
+PyGithub==1.43.*
+nltk==3.4.*
+sklearn==0.0
+pythainlp==2.0.*

@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+import sys
+import modelissue.data as load
+DataTitle,DataDescription,DataLabel = load.loaddata(sys.argv[1])
+
+import modelissue.predata as pre
+preTitle,preDescription,preLabel = pre.data(DataTitle,DataDescription,DataLabel)
+
+import modelissue.splitClass as spl
+listbug,listdoc,listdup,listenh,listgood,listhelp,listinv = spl.splitclass(preTitle,preDescription,preLabel)
+
+import modelissue.train_svm as acc
+acc.accepdata(listbug,listdoc,listdup,listenh,listgood,listhelp,listinv)
