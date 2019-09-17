@@ -4,9 +4,9 @@ import logging
 def loaddata(foldername):
     logging.info(f"import data in - {foldername}")
 
-    DataTitle = []
-    DataDescription = []
-    DataLabel = []
+    titles = []
+    descriptions = []
+    labels = []
     import csv
     import os
     for filename in os.listdir(foldername):
@@ -17,12 +17,10 @@ def loaddata(foldername):
                 line_count = 0
                 for row in csv_reader:
                     if line_count == 0:
-                        #print(f'Column names are {", ".join(row)}')
                         line_count += 1
-                    # print(f'\t{row["Title"]}')
-                    DataTitle.append(row["Title"])
-                    DataDescription.append(row["Description"])
-                    DataLabel.append(row["Label"])
+                    titles.append(row["Title"])
+                    descriptions.append(row["Description"])
+                    labels.append(row["Label"])
                     line_count += 1
                 logging.info(f"processed lines - {line_count}")
-    return DataTitle, DataDescription, DataLabel
+    return titles, descriptions, labels

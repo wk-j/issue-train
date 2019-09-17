@@ -1,3 +1,6 @@
+temp_dir = ".issue-train"
+
+
 def savefile(dttitle, dtdescription, dtlabel, name):
     import csv
     with open(name, mode='w') as csv_file:
@@ -56,7 +59,6 @@ def clean_msg(msg):
     for c in string.punctuation:
         msg = re.sub(r'\{}'.format(c), '', msg)
     # ลบ separator เช่น \n \t
-    #msg = ' '.join(msg.split())
     return msg
 
 
@@ -93,5 +95,5 @@ def data(title, description, labels):
             preLabel.append(label)
         i = i+1
 
-    savefile(preTitle, preDescription, preLabel, ".issue-train/data.csv")
+    savefile(preTitle, preDescription, preLabel, f"{temp_dir}/data.csv")
     return preTitle, preDescription, preLabel

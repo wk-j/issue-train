@@ -10,10 +10,10 @@ import modelissue.data as load
 logging.basicConfig(level=logging.DEBUG,
                     format='%(name)s - %(levelname)s - %(message)s')
 
-DataTitle, DataDescription, DataLabel = load.loaddata(sys.argv[1])
+title, description, label = load.loaddata(sys.argv[1])
 
 preTitle, preDescription, preLabel = pre.data(
-    DataTitle, DataDescription, DataLabel)
+    title, description, label)
 
 listbug, listdoc, listdup, listenh, listgood, listhelp, listinv = spl.splitclass(
     preTitle, preDescription, preLabel)
