@@ -3,6 +3,8 @@ Data
 build
 Model
 dist
-modelissue.egg-info
+*.egg-info
 Pipfile
 Pipfile.lock
+
+/issues

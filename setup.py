@@ -4,10 +4,11 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 with open("requirements.txt", "r", encoding="utf-8") as f:
     requirements = f.read().splitlines()
+
 setuptools.setup(
-    name="modelissue",
+    name="wk-issue-train",
     version="0.0.2",
-    scripts=['trainmodel'] ,
+    scripts=["wk-train-model", "wk-load-issue"],
     author="panu00x",
     author_email="lewpanu@gmail.com",
     description="train github issue to model",

@@ -1,14 +1,13 @@
-## Install
-```
-- modelissue
-pip3 install -i https://test.pypi.org/simple/ modelissue
-```
-## Using on Terminal
-```
-- train model
-trainmodel fullpathfolder
-```
-## Complete
-```
-model.data and vocabulary.data will save in your Document
+## Development
+
+```bash
+pipenv install -r requirements.txt
+pipenv install pip setuptools wheel tqdm twine
+pipenv run python setup.py sdist bdist_wheel
+
+pipenv run pip install dist/wk_issue_train-0.0.2-py3-none-any.whl
+pipenv run pip uninstall dist/wk_issue_train-0.0.2-py3-none-any.whl
+
+pipenv run wk-load-issue <token> <user/repository> <output-dir>
+pipenv run wk-load-issue $GITHUB_TOKEN  bcircle/easy-capture issues
 ```
