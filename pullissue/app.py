@@ -12,7 +12,6 @@ def savefile(dttitle, dtdescription, dtlabel, name):
             writer.writerow(
                 {'Label': dtlabel[i], 'Title': dttitle[i], 'Description': dtdescription[i]})
             i = i+1
-    print("Save success")
 
 
 def setfilename(name, dir):
@@ -49,10 +48,7 @@ def pluslabel(datalabel):
 
 def loadSingleRepository(token, name, dir):
     from github import Github
-    print("login.....")
     g = Github(token)
-    print("Login success")
-    print("Load Repository ....")
     dttitle = []
     dtdescription = []
     dtlabel = []
@@ -66,9 +62,4 @@ def loadSingleRepository(token, name, dir):
             dttitle.append(title)
             dtdescription.append(description)
             dtlabel.append(label)
-    print("Load success")
     savefile(dttitle, dtdescription, dtlabel, setfilename(name, dir))
-
-
-if __name__ == '__main__':
-    print("import success")

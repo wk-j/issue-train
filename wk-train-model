@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 
+import modelissue.train_svm as acc
+import modelissue.splitClass as spl
+import modelissue.predata as pre
+import logging
 import sys
 import modelissue.data as load
-DataTitle,DataDescription,DataLabel = load.loaddata(sys.argv[1])
 
-import modelissue.predata as pre
-preTitle,preDescription,preLabel = pre.data(DataTitle,DataDescription,DataLabel)
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(name)s - %(levelname)s - %(message)s')
 
-import modelissue.splitClass as spl
-listbug,listdoc,listdup,listenh,listgood,listhelp,listinv = spl.splitclass(preTitle,preDescription,preLabel)
+DataTitle, DataDescription, DataLabel = load.loaddata(sys.argv[1])
 
-import modelissue.train_svm as acc
-acc.accepdata(listbug,listdoc,listdup,listenh,listgood,listhelp,listinv)
+preTitle, preDescription, preLabel = pre.data(
+    DataTitle, DataDescription, DataLabel)
+
+listbug, listdoc, listdup, listenh, listgood, listhelp, listinv = spl.splitclass(
+    preTitle, preDescription, preLabel)
+
+acc.accepdata(listbug, listdoc, listdup, listenh, listgood, listhelp, listinv)
