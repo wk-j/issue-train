@@ -1,20 +1,20 @@
 import os
 
 
-def savefile(dttitle, dtdescription, dtlabel, name):
+def save_file(title, description, label, name):
     import csv
     with open(name, mode='w') as csv_file:
         fname = ['Label', 'Title', 'Description']
         writer = csv.DictWriter(csv_file, fieldnames=fname)
         writer.writeheader()
         i = 0
-        while i < len(dttitle):
+        while i < len(title):
             writer.writerow(
-                {'Label': dtlabel[i], 'Title': dttitle[i], 'Description': dtdescription[i]})
-            i = i+1
+                {'Label': label[i], 'Title': title[i], 'Description': description[i]})
+            i = i + 1
 
 
-def setfilename(name, dir):
+def set_file_name(name, dir):
     itemname = name.split("/")
 
     if not os.path.isdir(dir):
@@ -24,29 +24,29 @@ def setfilename(name, dir):
     return sname
 
 
-def tosingleline(lines):
+def to_single_line(lines):
     mystr = ''.join([line.strip() for line in lines])
     return mystr
 
 
-def getlabels(labels):
+def get_labels(labels):
     data1 = str(labels).split('name="')
     st = '")'
     data2 = data1[1].split(st)
     return data2[0]
 
 
-def pluslabel(datalabel):
+def plus_label(datalabel):
     label = ""
     labelall = []
     for j in datalabel:
-        labelall.append(tosingleline(getlabels(j)))
+        labelall.append(to_single_line(get_labels(j)))
     for la in labelall:
         label = label+"-"+la
     return label
 
 
-def loadSingleRepository(token, name, dir):
+def load_single_repository(token, name, dir):
     from github import Github
     g = Github(token)
     dttitle = []
@@ -56,10 +56,10 @@ def loadSingleRepository(token, name, dir):
     item = repo.get_issues(state='all')
     for i in item:
         if len(i.labels) > 0:
-            label = pluslabel(i.labels)
-            title = tosingleline(str(i.title))
-            description = tosingleline(str(i.body))
+            label = plus_label(i.labels)
+            title = to_single_line(str(i.title))
+            description = to_single_line(str(i.body))
             dttitle.append(title)
             dtdescription.append(description)
             dtlabel.append(label)
-    savefile(dttitle, dtdescription, dtlabel, setfilename(name, dir))
+    save_file(dttitle, dtdescription, dtlabel, set_file_name(name, dir))
